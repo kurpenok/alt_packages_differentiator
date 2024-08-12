@@ -1,5 +1,7 @@
+pub mod api_response;
+pub mod differentiator;
+pub mod packages_difference;
 pub mod parser;
-pub mod response_structure;
 
 #[cfg(test)]
 mod tests {}

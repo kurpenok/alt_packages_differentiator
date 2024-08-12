@@ -1,6 +1,6 @@
 use reqwest::blocking::Client;
 
-use crate::response_structure::PackagesData;
+use crate::api_response::PackagesData;
 
 fn get_raw_packages_data(repo: &str, arch: &str) -> Option<String> {
     let api_url = "https://rdb.altlinux.org/api/export/branch_binary_packages/";
