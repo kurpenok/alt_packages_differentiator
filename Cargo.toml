@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "apd",
+    "apd_core",
+]
+resolver = "2"
