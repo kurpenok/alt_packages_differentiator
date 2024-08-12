@@ -9,7 +9,7 @@ pub struct PackagesData {
     pub packages: Vec<Package>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Package {
     pub name: String,
     pub epoch: u32,
