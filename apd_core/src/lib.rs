@@ -1,7 +1,8 @@
-pub mod api_response;
-pub mod difference;
+mod api_response;
+mod difference;
 pub mod packages_differentiator;
 pub mod packages_parser;
+pub mod result_saver;
 
 #[cfg(test)]
 mod tests {}
