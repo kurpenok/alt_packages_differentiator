@@ -13,6 +13,12 @@ fn get_difference_with_version(
                 difference.push(package.clone());
                 break;
             }
+
+            if package.name.chars().collect::<Vec<char>>()[0]
+                > compare_package.name.chars().collect::<Vec<char>>()[0]
+            {
+                break;
+            }
         }
     }
 
@@ -26,6 +32,12 @@ fn get_difference(packages_1: &Vec<Package>, packages_2: &Vec<Package>) -> Vec<P
         for compare_package in packages_2 {
             if package.name == compare_package.name && package.version == compare_package.version {
                 difference.push(package.clone());
+                break;
+            }
+
+            if package.name.chars().collect::<Vec<char>>()[0]
+                > compare_package.name.chars().collect::<Vec<char>>()[0]
+            {
                 break;
             }
         }
@@ -43,8 +55,7 @@ pub fn get_packages_difference(
 
     let first_branch_unique_packages = get_difference(&packages_1, &packages_2);
     let second_branch_unique_packages = get_difference(&packages_2, &packages_1);
-    let packages_with_above_version: Vec<Package> =
-        get_difference_with_version(&packages_1, &packages_2);
+    let packages_with_above_version = get_difference_with_version(&packages_1, &packages_2);
 
     PackagesDifference {
         first_branch_unique_packages,
