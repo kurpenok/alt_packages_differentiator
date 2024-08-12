@@ -2,14 +2,14 @@ use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PackagesData {
     pub request_args: HashMap<String, String>,
     pub length: u32,
     pub packages: Vec<Package>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Package {
     pub name: String,
     pub epoch: u32,

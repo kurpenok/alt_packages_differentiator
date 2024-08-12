@@ -1,3 +1,8 @@
+use apd_core::parser::get_packages;
+
 fn main() {
-    println!("Hello, world!");
+    match get_packages("p10", "x86_64") {
+        Some(packages_data) => println!("{:?}", packages_data),
+        None => println!("[-] Fatal error!"),
+    }
 }
