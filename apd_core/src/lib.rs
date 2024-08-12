@@ -1,4 +1,5 @@
-mod response_structure;
+pub mod parser;
+pub mod response_structure;
 
 #[cfg(test)]
 mod tests {}
