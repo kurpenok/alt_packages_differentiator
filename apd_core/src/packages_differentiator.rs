@@ -10,8 +10,14 @@ fn get_above_version(version_1: String, version_2: String) -> String {
     let splitted_version_2: Vec<&str> = version_2.split(".").collect();
 
     for (part_1, part_2) in izip!(&splitted_version_1, &splitted_version_2) {
-        let part_1: i32 = part_1.parse::<i32>().unwrap();
-        let part_2: i32 = part_2.parse::<i32>().unwrap();
+        let part_1 = part_1.parse::<i32>();
+        let part_2 = part_2.parse::<i32>();
+
+        if part_1.is_err() || part_2.is_err() {
+            return version_1;
+        }
+        let part_1: i32 = part_1.unwrap();
+        let part_2: i32 = part_2.unwrap();
 
         if part_1 == part_2 {
             continue;
