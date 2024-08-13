@@ -16,6 +16,11 @@ cargo build --release
 
 ```
 cargo run -- --repo-1 <repo-1> --repo-2 <repo-2>
+
+# Example
+cargo run -- --repo-1 sisyphus --repo-2 p11
+
+# Waiting time for result: about a minute
 ```
 
 ### Packages
