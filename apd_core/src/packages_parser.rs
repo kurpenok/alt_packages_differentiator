@@ -46,3 +46,14 @@ pub fn get_packages(repo: &str, arch: &str) -> Option<PackagesData> {
         None => None,
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_packages() {
+        let packages_data = get_packages("p11", "x86_64");
+        assert_eq!(packages_data.is_some(), true);
+    }
+}
