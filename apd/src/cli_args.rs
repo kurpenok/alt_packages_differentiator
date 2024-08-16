@@ -8,4 +8,7 @@ pub struct Args {
 
     #[arg(long)]
     pub repo_2: String,
+
+    #[arg(long)]
+    pub arch: String,
 }
