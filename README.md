@@ -15,7 +15,7 @@ cargo build --release
 ### How to run CLI
 
 ```
-cargo run -- --repo-1 <repo-1> --repo-2 <repo-2>
+cargo run -- --repo-1 <repo-1> --repo-2 <repo-2> --arch <arch>
 
 # Waiting time for result: about a minute
 ```
@@ -32,7 +32,7 @@ apt-get install docker-engine docker-cli
 systemctl enable docker.service --now
 
 docker build -t apd .
-docker run --rm apd --repo-1 <repo-1> --repo-2 <repo-2>
+docker run --rm apd --repo-1 <repo-1> --repo-2 <repo-2> --arch <arch>
 ```
 
 ### Packages
