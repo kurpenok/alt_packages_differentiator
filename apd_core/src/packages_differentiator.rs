@@ -17,7 +17,10 @@ fn get_difference_by_version_release(
     }
 
     for package in packages_1 {
-        if packages_hm_2.contains_key(&package.name) {
+        if packages_hm_2.contains_key(&package.name)
+            && (package.version != packages_hm_2[&package.name].version
+                || package.release != packages_hm_2[&package.name].release)
+        {
             difference.push(calculate_version_release_difference(
                 &package,
                 &packages_hm_2[&package.name],
@@ -55,6 +58,7 @@ pub fn get_packages_difference(
     for package in packages_data_1.packages {
         packages_1.push(Package {
             name: package.name,
+            epoch: package.epoch,
             version: package.version,
             release: package.release,
         });
@@ -63,6 +67,7 @@ pub fn get_packages_difference(
     for package in packages_data_2.packages {
         packages_2.push(Package {
             name: package.name,
+            epoch: package.epoch,
             version: package.version,
             release: package.release,
         });

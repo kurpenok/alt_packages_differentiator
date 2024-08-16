@@ -46,12 +46,39 @@ pub fn calculate_version_release_difference(
     package_1: &Package,
     package_2: &Package,
 ) -> VersionReleasePackage {
-    if package_1.version == package_2.version {
+    if package_1.epoch > package_2.epoch {
+        VersionReleasePackage {
+            name: package_1.name.clone(),
+            epoch: package_1.epoch,
+            versions_difference: VersionsDifference {
+                old_version: package_1.version.clone(),
+                current_version: package_1.version.clone(),
+            },
+            releases_difference: ReleasesDifference {
+                old_release: package_1.release.clone(),
+                current_release: package_1.release.clone(),
+            },
+        }
+    } else if package_1.epoch < package_2.epoch {
+        VersionReleasePackage {
+            name: package_2.name.clone(),
+            epoch: package_2.epoch,
+            versions_difference: VersionsDifference {
+                old_version: package_2.version.clone(),
+                current_version: package_2.version.clone(),
+            },
+            releases_difference: ReleasesDifference {
+                old_release: package_2.release.clone(),
+                current_release: package_2.release.clone(),
+            },
+        }
+    } else if package_1.version == package_2.version {
         if package_1.release
             == get_above_release(package_1.release.clone(), package_2.release.clone())
         {
             VersionReleasePackage {
                 name: package_1.name.clone(),
+                epoch: package_1.epoch,
                 versions_difference: VersionsDifference {
                     old_version: package_1.version.clone(),
                     current_version: package_1.version.clone(),
@@ -64,6 +91,7 @@ pub fn calculate_version_release_difference(
         } else {
             VersionReleasePackage {
                 name: package_1.name.clone(),
+                epoch: package_2.epoch,
                 versions_difference: VersionsDifference {
                     old_version: package_1.version.clone(),
                     current_version: package_1.version.clone(),
@@ -80,6 +108,7 @@ pub fn calculate_version_release_difference(
         {
             VersionReleasePackage {
                 name: package_1.name.clone(),
+                epoch: package_1.epoch,
                 versions_difference: VersionsDifference {
                     old_version: package_2.version.clone(),
                     current_version: package_1.version.clone(),
@@ -92,6 +121,7 @@ pub fn calculate_version_release_difference(
         } else {
             VersionReleasePackage {
                 name: package_1.name.clone(),
+                epoch: package_2.epoch,
                 versions_difference: VersionsDifference {
                     old_version: package_1.version.clone(),
                     current_version: package_2.version.clone(),
@@ -129,11 +159,13 @@ mod tests {
     fn test_calculate_version_release_difference() {
         let package_1: Package = Package {
             name: "test_package".to_string(),
+            epoch: 0,
             version: "1.0.0".to_string(),
             release: "alt2".to_string(),
         };
         let package_2: Package = Package {
             name: "test_package".to_string(),
+            epoch: 0,
             version: "1.0.1".to_string(),
             release: "alt1".to_string(),
         };
@@ -142,6 +174,7 @@ mod tests {
             calculate_version_release_difference(&package_1, &package_2),
             VersionReleasePackage {
                 name: "test_package".to_string(),
+                epoch: 0,
                 versions_difference: VersionsDifference {
                     old_version: "1.0.0".to_string(),
                     current_version: "1.0.1".to_string()

@@ -15,6 +15,7 @@ pub struct ReleasesDifference {
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct VersionReleasePackage {
     pub name: String,
+    pub epoch: u32,
     pub versions_difference: VersionsDifference,
     pub releases_difference: ReleasesDifference,
 }
@@ -22,6 +23,7 @@ pub struct VersionReleasePackage {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Package {
     pub name: String,
+    pub epoch: u32,
     pub version: String,
     pub release: String,
 }
